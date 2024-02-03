@@ -1,24 +1,26 @@
-import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import type { Metadata } from 'next'
+import { Poppins } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
-import "./globals.css";
+import './globals.css'
 
-const poppins = Poppins({ subsets: ["latin"],
-weight:['400', '500', '600', '700'],
-variable:'--font-poppins' });
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-poppins',
+})
 
 export const metadata: Metadata = {
-  title: "GameStore",
-  description: "Ecommerce for games digital",
+  title: 'GameStore',
+  description: 'Ecommerce for games digital',
   icons: {
-    icon:'/assets/logo-games.svg'
-  }
-};
+    icon: '/assets/logo-games.svg',
+  },
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <ClerkProvider>
@@ -26,5 +28,5 @@ export default function RootLayout({
         <body className={poppins.variable}>{children}</body>
       </html>
     </ClerkProvider>
-  );
+  )
 }
