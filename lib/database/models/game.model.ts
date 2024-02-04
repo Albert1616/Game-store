@@ -1,17 +1,20 @@
+/* eslint-disable prettier/prettier */
 import { Schema, model, models, Document } from 'mongoose'
 
 export interface IGame extends Document {
+  _id: string
   title: string
   description: string
   cover_art: string
-  price: string | boolean
+  price: string
+  isFree: boolean
   location?: string
   createdAt: Date
   startDateTime: Date
   endDateTime: Date
   url?: string
-  category: { _id: string; name: string }
-  organization: { _id: string; fistName: string; lastName: string }
+  category: { _id: string, name: string }
+  organization: { _id: string, fistName: string, lastName: string }
 }
 
 const GameSchema = new Schema({
@@ -19,6 +22,7 @@ const GameSchema = new Schema({
   description: { type: String, require: true },
   cover_art: { type: String, required: true },
   price: { type: String, default: false },
+  isFree: { type: Boolean, default: false },
   location: { type: String },
   createdAt: { type: Date, default: Date.now },
   startDateTime: { type: Date, default: Date.now },
@@ -28,6 +32,6 @@ const GameSchema = new Schema({
   organization: { type: Schema.Types.ObjectId, ref: 'User' },
 })
 
-const Game = models.game || model('Game', GameSchema)
+const Game = models.Game || model('Game', GameSchema)
 
 export default Game

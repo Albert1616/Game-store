@@ -18,6 +18,7 @@ export async function createUser(user: CreateUserParams) {
     return JSON.parse(JSON.stringify(newUser))
   } catch (error) {
     handleError(error)
+    console.log('Connection error')
   }
 }
 
